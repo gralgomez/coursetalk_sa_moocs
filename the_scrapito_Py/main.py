@@ -6,31 +6,40 @@ import datetime
 from bs4 import BeautifulSoup as bsoup
 
  #--------------------------------
-url = urllib2.urlopen('https://www.coursetalk.com/providers/coursera/courses/an-introduction-to-interactive-programming-in-python').read()
+url = 'https://www.coursetalk.com/providers/coursera/courses/an-introduction-to-interactive-programming-in-python'
 r = req.get(url)
 soup = bsoup(r.content)
 
 review_list = []
   #--------------------------------
-  # TODO Resolving pagination
+  # TODO Resolving pagination ---> Solved!
+  # https://www.coursetalk.com/providers/coursera/courses/an-introduction-to-interactive-programming-in-python?page=276
   # var new_url = '/providers/coursera/courses/an-introduction-to-interactive-programming-in-python' + page_string + sort_string + '#reviews';
-  # page_string and page_sort are the kay variables
 
   #should have as output total number of pages i.e int
-page_count_links = soup.find_all("a", href=re.compile('?page=.*'))
-print(page_count_links)
-
+page_count_links = soup.find_all("a", href=re.compile(r".*page=.*"))
 try: # Make sure there are more than one page, otherwise, set to 1.
-    num_pages = int(page_count_links[-1].get_text())   #should have as output 278
-
+    num_pages = int(page_count_links[1].get_text()) #[3] = 278 the max number
 except IndexError:
     num_pages = 1
 
-url_list = ["{}&pageNum={}".format(url, str(page)) for page in range(1, num_pages + 1)]
+# Add 1 because Python range.
+url_list = ["{}?page={}#reviews".format(url, str(page)) for page in range(1, num_pages + 1)]
+
+with open("results.txt","wb") as acct:
+    for url_ in url_list:
+        print "Processing {}...".format(url_)
+        r_new = req.get(url_)
+        soup_new = bsoup(r_new.text)
+        for tr in soup_new.find_all('tr', align='center'):
+            stack = []
+            for td in tr.findAll('td'):
+                stack.append(td.text.replace('\n', '').replace('\t', '').strip())
+            acct.write(", ".join(stack) + '\n')
   #--------------------------------
 
   #   g_data refers to general data per page (course page)
-g_data = soup.find_all("div", {"class": "review js-review"}) #"row" contains userinfo and review_body #works fine!
+g_data = soup.find_all("div", {"class": "review js-review"})
 
 for item in g_data:
 
