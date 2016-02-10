@@ -2,7 +2,9 @@
 Scraping MOOC student reviews from Coursetalk.org with BeautifulSoup
 
 Current active document: 
+
 Wiki https://github.com/gralgomez/coursetalk_scraper/wiki
+
 Diary https://github.com/gralgomez/coursetalk_scraper/wiki/Roadmap---Diary
 
 1- Scrape all available courses in Coursetalk (47294 courses)
