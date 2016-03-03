@@ -85,8 +85,6 @@ library(ggplot2)
 p <- ggplot(subset(wf, freq>465), aes(word, freq))    
 p <- p + geom_bar(stat="identity")   
 p <- p + theme(axis.text.x=element_text(angle=45, hjust=1))  
-
-
 #----------------------------------------------
  
 
