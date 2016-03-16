@@ -1,14 +1,13 @@
-# coursetalk_scraper
-Scraping MOOC student reviews from Coursetalk.org with BeautifulSoup
+# MOOC Interrupted
 
-Current active document: 
+"MOOC Interrupted - Analyzing Agents determining (dis-)satisfaction and (dis-)engagement rate among MOOC students." is my masters thesis. This is the main repository containing all data and the Wiki documenting the whole process.
 
-* Wiki https://github.com/gralgomez/coursetalk_scraper/wiki
+Repositories: 
 
 * Diary https://github.com/gralgomez/coursetalk_scraper/wiki/Roadmap---Diary
 
-1- Scrape all available courses in Coursetalk (47294 courses)
+* MOOC market estimation (R): https://github.com/gralgomez/moocs_market_estimation
 
-2- For each course scrape: (goes over multipages)
-  2.1 - Course Info
-  2.2 - Reviews
+* Coursetalk review analysis (Py): https://github.com/gralgomez/moocs_coursetalk_sa
+ 
+The data used nd contained at many of the source code has been uploaded as well. Lookup for \data within the correspondent repositories.
